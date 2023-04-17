@@ -1,0 +1,36 @@
+1) Показать работников у которых нет почты или почта не в корпоративном домене (домен dualbootpartners.com)
+
+SELECT * FROM employees
+WHERE email IS NULL || email NOT LIKE '%dualbootpartners.com'
+
+2) Получить список работников нанятых в последние 30 дней
+
+SELECT * FROM employees
+WHERE hire_date >= NOW() - INTERVAL '30 day'
+
+3) Найти максимальную и минимальную зарплату по каждому департаменту
+
+SELECT d.name, MAX(e.salary), MIN(salary)
+FROM employees e
+JOIN departments d
+ON e.department_id = d.id
+GROUP BY d.id
+
+4) Посчитать количество работников в каждом регионе
+
+SELECT r.name, COUNT(DISTINCT e.id)
+FROM employees e LEFT JOIN departments d ON e.department_id = d.id
+LEFT JOIN locations l ON d.location_id = l.id
+LEFT JOIN regions r ON l.region_id = r.id
+GROUP BY r.id
+
+5) Показать сотрудников у которых фамилия длиннее 10 символов
+
+SELECT COUNT(DISTINCT id)
+FROM employees
+WHERE LENGTH(last_name) > 10
+
+6) Показать сотрудников с зарплатой выше средней по всей компании
+
+SELECT * FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees)
