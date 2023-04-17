@@ -15,14 +15,14 @@ class Task(models.Model):
         RELEASED = "released"
 
     title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_edited = models.DateTimeField(auto_now=True)
-    deadline = models.DateField(blank=True)
+    deadline = models.DateField(blank=True, null=True)
     status = models.CharField(
         max_length=255, default=Status.NEW_TASK, choices=Status.choices
     )
-    priority = models.IntegerField()
+    priority = models.IntegerField(default=1)
     tags = models.ManyToManyField(Tag)
     reporter = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL, related_name="reporter"
