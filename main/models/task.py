@@ -30,3 +30,6 @@ class Task(models.Model):
     assignee = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL, related_name="assignee"
     )
+
+    def __str__(self):
+        return self.title
