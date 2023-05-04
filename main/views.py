@@ -10,7 +10,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.order_by("priority")
+    queryset = Task.objects.select_related("reporter", "assignee").prefetch_related("tags")
     serializer_class = TaskSerializer
 
 
