@@ -27,8 +27,8 @@ class TaskFilter(django_filters.FilterSet):
     tags = django_filters.ModelMultipleChoiceFilter(
         field_name="tags", queryset=Tag.objects.all(), conjoined=True
     )
-    reporter = django_filters.CharFilter(lookup_expr="icontains")
-    assignee = django_filters.CharFilter(lookup_expr="icontains")
+    reporter = django_filters.CharFilter(field_name='reporter__first_name', lookup_expr="icontains")
+    assignee = django_filters.CharFilter(field_name='assignee__first_name', lookup_expr="icontains")
 
     class Meta:
         model = Task
