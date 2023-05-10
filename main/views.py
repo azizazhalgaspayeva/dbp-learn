@@ -29,7 +29,7 @@ class TaskFilter(django_filters.FilterSet):
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Task.objects.select_related("reporter", "assignee").prefetch_related("tags")
     serializer_class = TaskSerializer
     filterset_class = TaskFilter
 

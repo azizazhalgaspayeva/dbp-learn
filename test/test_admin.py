@@ -34,15 +34,6 @@ class TestAdmin(APITestCase):
             response = cls.client.get(url, follow=True)
             assert response.status_code == HTTPStatus.OK, response.content
 
-    
-    # def test_user(self):
-    #     response = self.client.get(reverse("admin:main_user_changelist"), follow=True)
-    #     assert response.status_code == HTTPStatus.OK, response.content
-    #     response = self.client.get(reverse("admin:main_user_add"), follow=True)
-    #     assert response.status_code == HTTPStatus.OK, response.content
-    #     response = self.client.get(reverse("admin:main_user_change", args=[self.admin.id]), follow=True)
-    #     assert response.status_code == HTTPStatus.OK, response.content
-
     def test_user(self) -> None:
         self.assert_forms(User, self.admin.id)
     
