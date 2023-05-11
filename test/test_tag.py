@@ -7,7 +7,6 @@ class TestTagViewSet(TestViewSetBase):
     tag_attributes = {"title": "urgent"}
 
     auth_error = {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
-    permission_error = {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
 
     @staticmethod
     def expected_details(entity: dict, attributes: dict) -> dict:
@@ -63,7 +62,7 @@ class TestTagViewSet(TestViewSetBase):
     def test_delete_fail(self) -> None:
         tag = self.create(self.tag_attributes, is_auth=True)
         response = self.delete(args=tag["id"])
-        expected_response = self.permission_error
+        expected_response = self.auth_error
 
         assert response == expected_response
     

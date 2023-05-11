@@ -7,7 +7,6 @@ from main.models import User, Tag
 class TestTaskViewSet(TestViewSetBase):
     basename = "tasks"
     auth_error = {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
-    permission_error = {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
 
     @staticmethod
     def expected_details(entity: dict, attributes: dict) -> dict:
@@ -92,7 +91,7 @@ class TestTaskViewSet(TestViewSetBase):
         task_attributes = self.get_task_attributes()
         task = self.create(data=task_attributes, is_auth=True)
         response = self.delete(args=task["id"])
-        expected_response = self.permission_error
+        expected_response = self.auth_error
 
         assert response == expected_response
     
