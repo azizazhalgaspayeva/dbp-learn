@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from django.http import HttpResponse
 import django_filters
 
 from .models import User, Task, Tag
@@ -51,3 +52,9 @@ class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.order_by("id")
     serializer_class = TagSerializer
     permission_classes = [DeleteStaffOnly, IsAuthenticated]
+
+
+def index(request):
+    a = None
+    a.hello() # Creating an error with an invalid line of code
+    return HttpResponse("Hello, world. You're at the pollapp index.")
