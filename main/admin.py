@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User, Task, Tag
 
+
 class TaskManagerAdminSite(admin.AdminSite):
     pass
 
@@ -20,6 +21,7 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ['first_name', 'last_name', 'email', 'role']
+    list_display = ["first_name", "last_name", "email", "role"]
+
 
 task_manager_admin_site.register(User, CustomUserAdmin)

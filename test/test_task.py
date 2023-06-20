@@ -6,7 +6,7 @@ from main.models import User, Tag
 
 class TestTaskViewSet(TestViewSetBase):
     basename = "tasks"
-    auth_error = {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+    auth_error = {"detail": ErrorDetail(string="Authentication credentials were not provided.", code="not_authenticated")}
 
     @staticmethod
     def expected_details(entity: dict, attributes: dict) -> dict:
@@ -100,7 +100,7 @@ class TestTaskViewSet(TestViewSetBase):
         task = self.create(data=task_attributes, is_auth=True)
         tag = task["tags"][-1]
         
-        response = self.filter(args=f'?reporter=user1&assignee=user2&status=new_task&tags={tag}')[-1]
+        response = self.filter(args=f"?reporter=user1&assignee=user2&status=new_task&tags={tag}")[-1]
         expected_response = self.expected_details(response, task_attributes)
 
         assert response == expected_response

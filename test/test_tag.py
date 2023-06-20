@@ -6,7 +6,7 @@ class TestTagViewSet(TestViewSetBase):
     basename = "tags"
     tag_attributes = {"title": "urgent"}
 
-    auth_error = {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+    auth_error = {"detail": ErrorDetail(string="Authentication credentials were not provided.", code="not_authenticated")}
 
     @staticmethod
     def expected_details(entity: dict, attributes: dict) -> dict:

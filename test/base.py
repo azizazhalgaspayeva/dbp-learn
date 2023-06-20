@@ -105,10 +105,6 @@ class TestViewSetBase(APITestCase):
         expected_status_code = self.get_status_code(self.client, is_auth, is_admin, HTTPStatus.NO_CONTENT)
         response = self.client.delete(self.detail_url(args))
 
-        print("!!!!!!!!!!!!!")
-        print(response)
-        print(expected_status_code)
-
         assert response.status_code == expected_status_code, response.content
         return response.data
     

@@ -23,7 +23,7 @@ class Task(models.Model):
         max_length=255, default=Status.NEW_TASK, choices=Status.choices
     )
     priority = models.IntegerField(default=1)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
     reporter = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL, related_name="reporter"
     )

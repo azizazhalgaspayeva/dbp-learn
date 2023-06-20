@@ -10,7 +10,7 @@ class TestUserViewSet(TestViewSetBase):
         "last_name": "Smith",
         "email": "john@test.com",
     }
-    auth_error = {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+    auth_error = {"detail": ErrorDetail(string="Authentication credentials were not provided.", code="not_authenticated")}
 
     @staticmethod
     def expected_details(entity: dict, attributes: dict) -> dict:
@@ -72,7 +72,7 @@ class TestUserViewSet(TestViewSetBase):
     
     def test_filter_success(self) -> None:
         self.create(self.user_attributes, is_auth=True)
-        response = self.filter(args='?first_name=oh')[-1]
+        response = self.filter(args="?first_name=oh")[-1]
         expected_response = self.expected_details(response, self.user_attributes)
 
-    #     assert response == expected_response
+        assert response == expected_response
