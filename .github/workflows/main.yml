@@ -1,0 +1,35 @@
+name: Main
+
+on:
+  pull_request:
+    branches:
+      - 'develop'
+  push:
+    branches:
+      - 'develop'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        env:
+          COVERAGE: true
+          RAILS_ENV: test
+        run: docker-compose --file docker-compose.ci.yml run --rm api pytest
+      
+      - name: Coveralls
+        uses: AndreMiras/coveralls-python-action@develop
+        with:
+          parallel: true
+          flag-name: Unit Test
+
+  coveralls_finish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: AndreMiras/coveralls-python-action@develop
+      with:
+        parallel-finished: true
