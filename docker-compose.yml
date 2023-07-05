@@ -19,6 +19,7 @@ services:
       DATABASE_PASSWORD: postgres
       DATABASE_HOST: db
       DATABASE_PORT: 5432
+      NEW_RELIC_CONFIG_FILE: /newrelic.ini
     command: python manage.py runserver 0.0.0.0:8000
 
   db:
