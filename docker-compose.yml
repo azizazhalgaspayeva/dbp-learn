@@ -26,7 +26,8 @@ services:
       EMAIL_HOST_PASSWORD: pwd
       EMAIL_PORT: 25
       DEFAULT_FROM_EMAIL: default_value
-    command: python manage.py runserver 0.0.0.0:8000
+      NEW_RELIC_CONFIG_FILE: newrelic.ini
+    command: newrelic-admin run-program python manage.py runserver 0.0.0.0:8000
 
   db:
     image: postgres:15.2
