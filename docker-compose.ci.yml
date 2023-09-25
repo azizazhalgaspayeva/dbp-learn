@@ -3,6 +3,13 @@ version: "3.7"
 x-app-config: &app-config
   DJANGO_ENV: dev
   DJANGO_SECRET_KEY: secret_key
+  EMAIL_USE_SSL: 0
+  EMAIL_USE_TLS: 0
+  EMAIL_HOST: localhost
+  EMAIL_HOST_USER: user
+  EMAIL_HOST_PASSWORD: pwd
+  EMAIL_PORT: 25
+  DEFAULT_FROM_EMAIL: default_value
 
 x-db-config: &db-config
   DATABASE_NAME: postgres
