@@ -1,8 +1,12 @@
-from http import HTTPStatus
-from rest_framework.test import APITestCase, APIClient
-from django.urls import reverse
 from typing import Union, List
+
+from http import HTTPStatus
+from django.urls import reverse
+from rest_framework.test import APITestCase, APIClient
+
 from main.models import User
+
+from .action_client import ActionClient
 
 
 class TestViewSetBase(APITestCase):
@@ -29,9 +33,11 @@ class TestViewSetBase(APITestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         super().setUpTestData()
-        cls.user = cls.create_api_user()
         cls.admin = cls.create_api_admin()
         cls.client = APIClient()
+        cls.action_client = ActionClient(cls.client)
+        cls.action_client.init_user()
+        cls.user = cls.action_client.user
 
     @classmethod
     def detail_url(cls, key: Union[int, str]) -> str:
