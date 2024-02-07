@@ -5,8 +5,7 @@ from django.db.models import Model
 from django.forms.models import model_to_dict
 
 from main.models import Tag, Task, User
-
-from .factory_base import TagFactory, TaskFactory, UserFactory
+from test.base.factories import TagFactory, TaskFactory, UserFactory
 
 T = TypeVar("T", bound=Model)
 
