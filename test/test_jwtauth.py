@@ -4,7 +4,7 @@ from http import HTTPStatus
 from freezegun import freeze_time
 from datetime import timedelta
 
-from .base.factory_base import UserFactory
+from test.base.factories import UserFactory
 
 
 class TestJWTAuth(APITestCase):
